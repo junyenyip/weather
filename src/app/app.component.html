@@ -1,0 +1,39 @@
+<section>
+  <div class="container weather-container" *ngIf="weather">
+    <p>Location: {{ weather.name }}, {{ weather.sys.country }}</p>
+
+    <p>
+      Temperature:
+      {{ weather.main.temp - 273.15 | number : "1.0-1" }}&deg;C
+    </p>
+
+    <p>
+      {{ weather.weather[0].main }}
+    </p>
+
+    <p>
+      Feels like:
+      {{ weather.main.feels_like - 273.15 | number : "1.0-1" }}&deg;C
+    </p>
+
+    <p>
+      Humidity:
+      {{ weather.main.humidity | number : "1.0-1" }}&deg;C
+    </p>
+
+    <div class="update-container">
+      <button
+        class="update-button"
+        mat-raised-button
+        color="primary"
+        (click)="getWeather()"
+      >
+        Update
+      </button>
+      <p class="subtext">Data is updated every 10 minutes</p>
+      <p class="subtext">
+        Time left: {{ resetTimer | date : "mm:ss" : "UTC" }}
+      </p>
+    </div>
+  </div>
+</section>

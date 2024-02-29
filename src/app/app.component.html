@@ -31,6 +31,7 @@
         Update
       </button>
       <p class="subtext">Data is updated every 10 minutes</p>
+      <p class="subtext">Last updated: {{ currentTime | date : "mediumTime" }}</p>
       <p class="subtext">
         Time left: {{ resetTimer | date : "mm:ss" : "UTC" }}
       </p>

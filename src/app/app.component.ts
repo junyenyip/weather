@@ -18,6 +18,8 @@ export class AppComponent {
 
   interval: any;
 
+  currentTime: any;
+
   constructor(private http: HttpClient) {
     this.interval = setInterval(() => {
       this.resetTimer -= 1000;
@@ -26,6 +28,7 @@ export class AppComponent {
       }
     }, 1000)
 
+    this.getCurrentTime();
   }
 
   ngOnInit(): void {
@@ -36,8 +39,13 @@ export class AppComponent {
     })
   }
 
+  getCurrentTime() {
+    this.currentTime = Date.now();
+  }
+
   getWeather() {
     this.resetTimer = 600000;
+    this.getCurrentTime();
     this.http.get('https://api.openweathermap.org/data/2.5/weather?lat=5.3833&lon=100.3833&appid=0b14fe91eb0548e67cc8956d170f24cc').subscribe((data) => {
       this.weather = data;
       // console.log(this.weather);
